@@ -1,10 +1,23 @@
-const test_baseUrl = "http://localhost:8080/LoveLetterServer"
-const baseUrl = "http://192.168.12.79:8080/LoveLetterServer"
+const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
 /**
  * 登录验证
  */
-function checkLogin(url, code) {
-    return sendRequest(url, code).then(res => res.data)
+function checkLogin(url, jsCode) {
+    return sendRequest(url, jsCode).then(res => res.data)
+}
+
+/**
+ * 用户注册
+ */
+function saveUser(url, data) {
+    return sendRequest(url, data).then(res => res.data)
+}
+
+/**
+ * 获取美食
+ */
+function getFoodsByProvinceId(url, data) {
+    return sendRequest(url, data).then(res => res.data)
 }
 
 /**
@@ -218,5 +231,7 @@ var provinces = [
 module.exports = {
     checkLogin: checkLogin,
     uploadFile: uploadFile,
-    provinces: provinces
+    provinces: provinces,
+    saveUser: saveUser,
+    getFoodsByProvinceId: getFoodsByProvinceId
 }

@@ -1,2 +1,6 @@
 <!--pages/guide/guide.wxml-->
-<text>pages/guide/guide.wxml</text>
+<view class='contain'>
+    <image class='guideImg' src='/images/guide.jpg'></image>
+    <image class='beginBg' src='/images/beginBtn.png'></image>
+    <button class='beginBtn' lang='zh_CN' open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+</view>

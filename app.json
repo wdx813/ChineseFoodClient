@@ -1,14 +1,14 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/guide/guide",
-    "pages/result/result",
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "pages": [
+        "pages/guide/guide",
+        "pages/index/index",
+        "pages/result/result",
+        "pages/logs/logs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#efc9de",
+        "navigationBarTitleText": "吃货101",
+        "navigationBarTextStyle": "black"
+    }
 }
