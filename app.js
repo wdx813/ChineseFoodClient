@@ -16,7 +16,10 @@ App({
                 common.checkLogin('/user/checkLogin', res.code).then(res => {
                     console.log(res);
                     if(res.code == 'E0000') {
-                        this.globalData.openId = res.data.openId
+                        this.globalData.openId = res.data.openId,
+                        this.globalData.token = res.data.token
+                        wx.setStorageSync('openId', res.data.openId)
+                        wx.setStorageSync('token', res.data.token)
                     }
                 })
             }
@@ -44,6 +47,7 @@ App({
     },
     globalData: {
         userInfo: null,
-        openId: null
+        openId: null,
+        token: null
     }
 })

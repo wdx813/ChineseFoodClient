@@ -1,9 +1,4 @@
 /* pages/guide/guide.wxss */
-
-page {
-    height: 100%;
-}
-
 .contain {
     width: 100%;
     height: 100%;

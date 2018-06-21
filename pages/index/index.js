@@ -6,12 +6,15 @@ const app = getApp()
 
 Page({
     data: {
-        provinces: []
+        provinces: [],
+        submitData: [],
+        tempData: []
     },
 
     onLoad: function () {
         this.setData({
             provinces: common.provinces
         })
+        
     },
 })

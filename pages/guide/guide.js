@@ -15,6 +15,7 @@ Page({
             if (!app.globalData.userInfo) {
                 var user = {
                     openId: app.globalData.openId,
+                    token: app.globalData.token,
                     nickname: e.detail.userInfo.nickName,
                     gender: e.detail.userInfo.gender,
                     avatar: e.detail.userInfo.avatarUrl

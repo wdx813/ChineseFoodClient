@@ -1,4 +1,5 @@
 const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
+
 /**
  * 登录验证
  */
@@ -24,13 +25,17 @@ function getFoodsByProvinceId(url, data) {
  * 封装请求函数
  */
 function sendRequest(url, data) {
+    var openId =  wx.getStorageSync('openId')
+    var token = wx.getStorageSync('token')
     return new Promise((resole, reject) => {
         wx.request({
             url: baseUrl + url,
             method: 'post',
             data: data,
             header: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'openId': openId,
+                'token': token
             },
             success: resole,
             fail: reject

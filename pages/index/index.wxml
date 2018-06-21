@@ -1,3 +1,8 @@
 <!--index.wxml-->
-<view class="container">
+<view class="contain">
+    <scroll-view class='province-scroll' scroll-y='true'>
+        <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}">
+            <text class='province-text'>{{item.name}}</text>
+        </view>
+    </scroll-view>
 </view>
