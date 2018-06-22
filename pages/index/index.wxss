@@ -1,75 +1,135 @@
 /**index.wxss**/
 
 .contain {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.foot {
+    width: 100%;
+    height: 10%;
+    background-color: #efc9de;
 }
 
 .province-scroll {
-  width: 100%;
-  height: 90%;
+    width: 100%;
+    height: 90%;
 }
 
 .province-item {
-  width: 95%;
-  height: 100rpx;
-  border-bottom: 1px solid;
-  border-bottom-color: #ddd;
-  border-bottom-width: 50%;
-  display: flex;
-  align-items: center;
-  margin-left: 20rpx;
+    width: 95%;
+    height: 100rpx;
+    border-bottom: 1px solid;
+    border-bottom-color: #ddd;
+    border-bottom-width: 50%;
+    display: flex;
+    align-items: center;
+    margin-left: 20rpx;
 }
 
 .province-text {
-  margin-left: 200rpx;
+    margin-left: 200rpx;
 }
 
 .food-contain {
-  width: 100%;
-  height: 90%;
-  /* opacity: 0.3; */
-  position: absolute;
-  /* background-color: black; */
-  top: 0rpx;
-  left: 100%;
-  display: flex;
-  justify-content: flex-end;
+    width: 100%;
+    height: 90%;
+    /* opacity: 0.3; */
+    position: absolute;
+    /* background-color: black; */
+    top: 0rpx;
+    left: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .opacity-area {
-  width: 20%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.3;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
 }
 
 .food-scroll {
-  width: 80%;
-  height: 100%;
-  background-color: white;
-  opacity: 1;
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    opacity: 1;
+}
+
+.food-tip {
+    width: 100%;
+    height: 5%;
+    display: flex;
+}
+
+.tip-icon {
+    width: 15rpx;
+    height: 30rpx;
+    background-color: red;
+    position: relative;
+    left: 30rpx;
+    top: 15rpx;
+}
+
+.tip-text {
+    font-size: 27rpx;
+    position: relative;
+    left: 40rpx;
+    top: 10rpx;
+}
+
+.province-name {
+    width: 100%;
+    height: 40rpx;
+    background-color: #eee;
+    font-size: 25rpx;
+}
+
+.province-name text {
+    color: #aaa;
+    position: relative;
+    left: 30rpx;
 }
 
 .food-item {
-  height: 200rpx;
-  width: 100%;
-  border-bottom: 1px solid;
-  border-bottom-color: #ddd;
-  border-bottom-width: 50%;
+    height: 200rpx;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-bottom-color: #ddd;
+    border-bottom-width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 .food-img {
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 14rpx;
-  position: relative;
-  top: 10rpx;
-  left: 20rpx;
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 14rpx;
+    position: relative;
+    left: 20rpx;
+}
+ 
+.food-name {
+    position: relative;
+    left: 60rpx;
+} 
+
+.food-btn {
+    position: relative;
+    top: 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.food-name {
-  position: relative;
-  bottom: 120rpx;
-  left: 50rpx;
+.eatBtn {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.likeNum {
+    font-size: 40rpx;
+    position: relative;
+    left: 20rpx;
 }

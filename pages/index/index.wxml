@@ -1,19 +1,36 @@
 <!--index.wxml-->
 <view class="contain">
     <scroll-view class='province-scroll' scroll-y='true'>
-        <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}" bindtap='onShowFoods'>
+        <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}" data-name='{{item.name}}' bindtap='onShowFoods'>
             <text class='province-text'>{{item.name}}</text>
         </view>
     </scroll-view>
+    <view class='foot'></view>
+
 </view>
 <!-- 隐藏区域 -->
-<view class='food-contain' animation="{{animationData}}" bindtap='onHideFoods'>
-    <view class='opacity-area'></view>
-    <scroll-view class='food-scroll' scroll-y="true">
-      <view class='food-item' wx:for='{{foods}}' wx:key='unique' data-id='{{item.id}}'>
-      <image class='food-img' src='{{item.imgUrl}}'></image>
-      <text class='food-name'>{{item.name}}</text>
-      </view>
+<view class='food-contain' animation="{{animationData}}">
+    <view class='opacity-area' bindtap='onHideFoods' catchtouchmove='move'></view>
+    <scroll-view class='food-scroll' scroll-y="true" bindscrolltolower='onScrollToLower' data-id='{{foods[0].provinceId}}'>
+        <view class='food-tip'>
+            <view class='tip-icon'></view>
+            <view>
+                <text class='tip-text'>瘦子吃给胖子看，是一件很残酷的事儿</text>
+            </view>
+            
+        </view>
+        <view class='province-name'>
+            <text>{{provinceName}}-美食</text>
+        </view>
+        <view class='food-item' wx:for='{{foods}}' wx:key='unique' data-id='{{item.id}}'>
+            <image class='food-img' src='{{item.imgUrl}}'></image>
+            <view class='food-name'>
+                <text>{{item.name}}</text>
+                <view class='food-btn'>
+                    <image class='eatBtn' src='/images/eat.png'></image>
+                    <text class='likeNum'>1005612</text>
+                </view>
+            </view>
+        </view>
     </scroll-view>
 </view>
-

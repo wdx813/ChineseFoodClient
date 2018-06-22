@@ -7,6 +7,9 @@ App({
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
+        var systemInfo = wx.getSystemInfoSync()
+        wx.setStorageSync('windowWidth', systemInfo.windowWidth)
+        wx.setStorageSync('windowHeight', systemInfo.windowHeight)
 
         // 登录
         wx.login({
