@@ -1,4 +1,4 @@
-const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
+const baseUrl = "http://192.168.1.6:8080/ChineseFoodServer"
 
 /**
  * 登录验证

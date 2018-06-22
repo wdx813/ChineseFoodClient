@@ -1,8 +1,19 @@
 <!--index.wxml-->
 <view class="contain">
     <scroll-view class='province-scroll' scroll-y='true'>
-        <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}">
+        <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}" bindtap='onShowFoods'>
             <text class='province-text'>{{item.name}}</text>
         </view>
     </scroll-view>
 </view>
+<!-- 隐藏区域 -->
+<view class='food-contain' animation="{{animationData}}" bindtap='onHideFoods'>
+    <view class='opacity-area'></view>
+    <scroll-view class='food-scroll' scroll-y="true">
+      <view class='food-item' wx:for='{{foods}}' wx:key='unique' data-id='{{item.id}}'>
+      <image class='food-img' src='{{item.imgUrl}}'></image>
+      <text class='food-name'>{{item.name}}</text>
+      </view>
+    </scroll-view>
+</view>
+
