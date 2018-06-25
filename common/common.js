@@ -22,6 +22,13 @@ function getFoodsByProvinceId(url, data) {
 }
 
 /**
+ * 更新吃过该美食的人数
+ */
+function updateFoodEatNum(url, data) {
+    return sendRequest(url, data).then(res => res.data)
+}
+
+/**
  * 封装请求函数
  */
 function sendRequest(url, data) {
@@ -64,172 +71,206 @@ var provinces = [
     {
         "id": 1,
         "name": "北京",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 2,
         "name": "安徽",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 3,
         "name": "澳门",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 4,
         "name": "福建",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 5,
         "name": "甘肃",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 6,
         "name": "广东",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 7,
         "name": "广西",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 8,
         "name": "贵州",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 9,
         "name": "海南",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 10,
         "name": "河北",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 11,
         "name": "河南",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 12,
         "name": "重庆",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 13,
         "name": "黑龙江",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 14,
         "name": "湖北",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 15,
         "name": "湖南",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 16,
         "name": "吉林",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 17,
         "name": "江苏",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 18,
         "name": "江西",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 19,
         "name": "辽宁",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 20,
         "name": "内蒙古",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 21,
         "name": "宁夏",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 22,
         "name": "青海",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 23,
         "name": "山东",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 24,
         "name": "山西",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 25,
         "name": "陕西",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 26,
         "name": "上海",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 27,
         "name": "四川",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 28,
         "name": "台湾",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 29,
         "name": "天津",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 30,
         "name": "西藏",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 31,
         "name": "香港",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 32,
         "name": "新疆",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 33,
         "name": "云南",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     },
     {
         "id": 34,
         "name": "浙江",
-        "imgUrl": ""
+        "imgUrl": "",
+        "num": 0
     }
 ]
 
@@ -238,5 +279,6 @@ module.exports = {
     uploadFile: uploadFile,
     provinces: provinces,
     saveUser: saveUser,
-    getFoodsByProvinceId: getFoodsByProvinceId
+    getFoodsByProvinceId: getFoodsByProvinceId,
+    updateFoodEatNum: updateFoodEatNum
 }

@@ -33,14 +33,12 @@ Page({
         } else {
             self.loadFoods(provinceId, 1)
         }
-        
+        // 动画效果
         var animation = wx.createAnimation({
             duration: 100,
             timingFunction: 'linear'
         })
-
         animation.translateX(-windowWidth).step()
-
         self.setData({
             animationData: animation.export()
         })
@@ -91,8 +89,69 @@ Page({
         }
     },
 
+    // 防止滑动的透传
     move: function() {
         
+    },
+
+    chooseFoods: function(e) {
+        var self = this
+        var index = e.currentTarget.dataset.index
+        var fid = e.currentTarget.dataset.fid
+        var pid = e.currentTarget.dataset.pid
+        var foods = self.data.foods
+        var status = foods[index].status
+        var eatNum = foods[index].eatNum
+
+        var tempProData = wx.getStorageSync('tempData#' + pid)
+        var tempAllData = wx.getStorageSync('tempAllData')
+        if (!tempProData) {
+            var tempProData = []
+        }
+        if (!tempAllData) {
+            var tempAllData = []
+        }
+
+        if (!status) {
+            status = true
+            eatNum ++
+            tempProData.push(fid)
+            tempAllData.push(fid)
+        } else {
+            status = false
+            eatNum --
+            tempProData.remove(fid)
+            tempAllData.remove(fid)
+        }
+        console.log(tempProData)
+        console.log(tempAllData)
+
+        foods[index].status = status
+        foods[index].eatNum = eatNum
+        self.setData({foods: foods})
+        this.updateProvinceNum(pid, tempProData.length)
+
+        wx.setStorageSync('tempData#' + pid, tempProData)
+        wx.setStorageSync('tempAllData', tempAllData)
+        wx.setStorageSync('foods#' + pid, foods)
+    },
+
+    updateProvinceNum: function(pid, newNum) {
+        var provinces = this.data.provinces
+        for(var i = 0; i < provinces.length; i ++) {
+            if(pid == provinces[i].id) {
+                provinces[i].num = newNum
+            }
+        }
+        this.setData({provinces: provinces})
     }
 
 })
+
+Array.prototype.remove = function (val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) {
+            this.splice(i, 1);
+        }
+    }
+};
