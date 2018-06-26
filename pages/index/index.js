@@ -13,7 +13,8 @@ Page({
         animationData: {},
         page: 1,
         haseMore: true,
-        provinceName: ""
+        provinceName: "",
+        isDisabled: true
     },
 
     onLoad: function () {
@@ -103,50 +104,91 @@ Page({
         var status = foods[index].status
         var eatNum = foods[index].eatNum
 
-        var tempProData = wx.getStorageSync('tempData#' + pid)
-        var tempAllData = wx.getStorageSync('tempAllData')
-        if (!tempProData) {
-            var tempProData = []
+        var tempFood = wx.getStorageSync('tempFood#' + pid)
+        var tempAllFoods = wx.getStorageSync('tempAllFoods')
+        var tempAllProvinces = wx.getStorageSync('tempAllProvinces')
+        if (!tempFood) {
+            var tempFood = []
         }
-        if (!tempAllData) {
-            var tempAllData = []
+        if (!tempAllFoods) {
+            var tempAllFoods = []
         }
-
+        if (!tempAllProvinces) {
+            var tempAllProvinces = []
+        }
         if (!status) {
             status = true
             eatNum ++
-            tempProData.push(fid)
-            tempAllData.push(fid)
+            tempFood.add(fid)
+            tempAllFoods.add(fid)
         } else {
             status = false
             eatNum --
-            tempProData.remove(fid)
-            tempAllData.remove(fid)
+            tempFood.remove(fid)
+            tempAllFoods.remove(fid)
         }
-        console.log(tempProData)
-        console.log(tempAllData)
+        //统计品尝过的省份
+        if(tempFood.length > 0) {
+            tempAllProvinces.add(pid)
+        } else {
+            tempAllProvinces.remove(pid)
+        }
+        console.log(tempFood)
+        console.log('全部美食',tempAllFoods)
+        console.log('全部省份',tempAllProvinces)
 
         foods[index].status = status
         foods[index].eatNum = eatNum
-        self.setData({foods: foods})
-        this.updateProvinceNum(pid, tempProData.length)
+        
+        //统计每个省份品尝过的美食
+        var provinces = this.data.provinces
+        for (var i = 0; i < provinces.length; i++) {
+            if (pid == provinces[i].id) {
+                provinces[i].num = tempFood.length
+            }
+        }
+        if (tempAllFoods && tempAllFoods.length > 0) {
+            self.setData({ isDisabled: false })
+        }
+        self.setData({foods: foods, provinces: provinces})
 
-        wx.setStorageSync('tempData#' + pid, tempProData)
-        wx.setStorageSync('tempAllData', tempAllData)
+        wx.setStorageSync('tempFood#' + pid, tempFood)
+        wx.setStorageSync('tempAllFoods', tempAllFoods)
+        wx.setStorageSync('tempAllProvinces', tempAllProvinces)
         wx.setStorageSync('foods#' + pid, foods)
     },
 
-    updateProvinceNum: function(pid, newNum) {
-        var provinces = this.data.provinces
-        for(var i = 0; i < provinces.length; i ++) {
-            if(pid == provinces[i].id) {
-                provinces[i].num = newNum
-            }
+    onSubmit: function() {
+        var tempAllFoods = wx.getStorageSync('tempAllFoods')
+        var data = {
+            openId: app.globalData.openId,
+            foodIds: tempAllFoods
         }
-        this.setData({provinces: provinces})
+        wx.showLoading({
+            title: '正在提交...',
+        })
+        common.submitFoodData('/user/submit', data).then(res => {
+            console.log(res)
+            if(res && res.code == 'E0000') {
+                wx.navigateTo({
+                    url: '/pages/result/result?surpassPercent=' + res.data.surpassPercent,
+                })
+                wx.hideLoading()
+            }
+        })
     }
 
 })
+
+Array.prototype.add = function (val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val) {
+            return
+        }
+    }
+    this.push(val)
+};
+
 
 Array.prototype.remove = function (val) {
     for (var i = 0; i < this.length; i++) {

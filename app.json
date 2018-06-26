@@ -1,9 +1,11 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/guide/guide",
-        
+        "pages/test/test",
         "pages/result/result",
+        
+        
+        "pages/index/index",
         "pages/logs/logs"
     ],
     "window": {

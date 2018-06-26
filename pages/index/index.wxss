@@ -33,7 +33,19 @@
 
 .province-num {
     margin-left: 50rpx;
-    color: red;
+    background: red;
+    width: 45rpx;
+    height: 45rpx;
+    border: 0 solid;
+    border-radius: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.province-num text {
+    color: white;
+    font-size: 25rpx;
 }
 
 .food-contain {
@@ -137,4 +149,11 @@
     font-size: 40rpx;
     position: relative;
     left: 20rpx;
+}
+
+.submitBtn {
+    width: 400rpx;
+    height: 100rpx;
+    position: relative;
+    top: 10rpx;
 }

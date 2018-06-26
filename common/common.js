@@ -29,6 +29,13 @@ function updateFoodEatNum(url, data) {
 }
 
 /**
+ * 提交美食数据，获取结果
+ */
+function submitFoodData(url, data) {
+    return sendRequest(url, data).then(res => res.data)
+}
+
+/**
  * 封装请求函数
  */
 function sendRequest(url, data) {
@@ -280,5 +287,6 @@ module.exports = {
     provinces: provinces,
     saveUser: saveUser,
     getFoodsByProvinceId: getFoodsByProvinceId,
-    updateFoodEatNum: updateFoodEatNum
+    updateFoodEatNum: updateFoodEatNum,
+    submitFoodData: submitFoodData
 }

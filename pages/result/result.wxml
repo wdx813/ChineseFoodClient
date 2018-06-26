@@ -1,2 +1,18 @@
 <!--pages/result/result.wxml-->
-<text>pages/result/result.wxml</text>
+<view class='contain'>
+    <canvas canvas-id='share' class='canvas'>
+        <view class='avatar'>
+            <image src='{{avatar}}'></image>
+        </view>
+        <view class='nickname'>
+            <text>{{nickname}}</text>
+        </view>
+        <view class='province-food'>
+            <text>品尝过{{provinceNum}}个省区的特色，享用过{{foodNum}}种小吃</text>
+        </view>
+        <view class='surpass'>
+            <text>超越了{{surpassPercent}}%的吃友。</text>
+        </view>
+        <button class='saveBtn' bindtap='saveImageToPhoto'>保存至相册</button>
+    </canvas>
+</view>

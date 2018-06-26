@@ -20,6 +20,7 @@ Page({
                     gender: e.detail.userInfo.gender,
                     avatar: e.detail.userInfo.avatarUrl
                 }
+                app.globalData.userInfo = e.detail.userInfo
                 // 保存用户数据
                 common.saveUser('/user/save', user).then(res => {
                     if(res.code == 'E0000') {

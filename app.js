@@ -21,6 +21,7 @@ App({
                     if(res.code == 'E0000') {
                         this.globalData.openId = res.data.openId,
                         this.globalData.token = res.data.token
+                        wx.clearStorageSync()
                         wx.setStorageSync('openId', res.data.openId)
                         wx.setStorageSync('token', res.data.token)
                     }

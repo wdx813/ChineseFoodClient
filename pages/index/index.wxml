@@ -3,10 +3,14 @@
     <scroll-view class='province-scroll' scroll-y='true'>
         <view class='province-item' wx:for="{{provinces}}" wx:key="unique" data-id="{{item.id}}" data-name='{{item.name}}' bindtap='onShowFoods'>
             <text class='province-text'>{{item.name}}</text>
-            <text class='province-num'>{{item.num == 0 ? '' : item.num}}</text>
+            <view class='province-num' wx:if='{{item.num != 0}}'>
+                <text>{{item.num == 0 ? '' : item.num}}</text>
+            </view>
         </view>
     </scroll-view>
-    <view class='foot'></view>
+    <view class='foot'>
+        <button plain='true' class='submitBtn' disabled='{{isDisabled}}' bindtap='onSubmit'>提交</button>
+    </view>
 
 </view>
 <!-- 隐藏区域 -->
