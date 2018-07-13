@@ -13,16 +13,25 @@ Page({
     getUserInfo: function (e) {
         if (e.detail.userInfo) {
             if (!app.globalData.userInfo) {
-                var user = {
-                    openId: app.globalData.openId,
-                    token: app.globalData.token,
-                    nickname: e.detail.userInfo.nickName,
-                    gender: e.detail.userInfo.gender,
-                    avatar: e.detail.userInfo.avatarUrl
-                }
+                var timestamp = new Date().getTime()
+                var sign = common.buildSign(timestamp)
+                // var user = {
+                //     openId: app.globalData.openId,
+                //     token: app.globalData.token,
+                //     timestamp: timestamp,
+                //     sign: sign,
+                //     nickname: e.detail.userInfo.nickName,
+                //     gender: e.detail.userInfo.gender,
+                //     avatar: e.detail.userInfo.avatarUrl
+                // }
+                var user = common.createParams()
+                user.nickname = e.detail.userInfo.nickName
+                user.gender = e.detail.userInfo.gender
+                user.avatar = e.detail.userInfo.avatarUrl
                 app.globalData.userInfo = e.detail.userInfo
                 // 保存用户数据
-                common.saveUser('/user/save', user).then(res => {
+                common.saveUser('/_API/saveUser', user).then(res => {
+                    console.log(res);
                     if(res.code == 'E0000') {
                         wx.redirectTo({
                             url: '/pages/index/index',
@@ -30,9 +39,18 @@ Page({
                     }
                 })
             } else {
-                wx.redirectTo({
-                    url: '/pages/index/index',
-                })
+                if (app.globalData.openId && app.globalData.token) {
+                    wx.redirectTo({
+                        url: '/pages/index/index',
+                    })
+                } else {
+                    wx.showToast({
+                        title: '系统维护中，请稍后重试',
+                        icon: 'none',
+                        duration: 2000
+                    })
+                }
+                
             }
         } else {
             wx.showModal({

@@ -1,5 +1,8 @@
-const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
+const utils = require('../utils/util.js')
 
+// const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
+// const baseUrl = "http://60.205.1.4:8881"
+const baseUrl = "http://127.0.0.1"
 /**
  * 登录验证
  */
@@ -35,6 +38,16 @@ function submitFoodData(url, data) {
     return sendRequest(url, data).then(res => res.data)
 }
 
+function createParams() {
+    var token = wx.getStorageSync('token')
+    var obj = new Object()
+    obj.openId = wx.getStorageSync('openId')
+    obj.timestamp = new Date().getTime()
+    var str = 'openId=' + obj.openId + '&timestamp=' + obj.timestamp + '&token=' + token
+    obj.sign = utils.hex_md5(str).toUpperCase()
+    return obj
+}
+
 /**
  * 封装请求函数
  */
@@ -47,7 +60,7 @@ function sendRequest(url, data) {
             method: 'post',
             data: data,
             header: {
-                'content-type': 'application/json',
+                'content-type': 'application/x-www-form-urlencoded',
                 'openId': openId,
                 'token': token
             },
@@ -71,6 +84,17 @@ function uploadFile(url, data, filePath) {
             fail: reject
         })
     })
+}
+
+/**
+ * 生成签名
+ */
+function buildSign(timestamp) {
+    var openId = wx.getStorageSync('openId')
+    var token = wx.getStorageSync('token')
+    var str = 'openId=' + openId + '&timestamp=' + timestamp + '&token=' + token
+    var sign = utils.hex_md5(str).toUpperCase()
+    return sign
 }
 
 // 省份数据
@@ -143,13 +167,13 @@ var provinces = [
     },
     {
         "id": 12,
-        "name": "重庆",
+        "name": "黑龙江",
         "imgUrl": "",
         "num": 0
     },
     {
         "id": 13,
-        "name": "黑龙江",
+        "name": "重庆",
         "imgUrl": "",
         "num": 0
     },
@@ -282,11 +306,13 @@ var provinces = [
 ]
 
 module.exports = {
-    checkLogin: checkLogin,
-    uploadFile: uploadFile,
-    provinces: provinces,
-    saveUser: saveUser,
-    getFoodsByProvinceId: getFoodsByProvinceId,
-    updateFoodEatNum: updateFoodEatNum,
-    submitFoodData: submitFoodData
+    checkLogin,
+    uploadFile,
+    provinces,
+    saveUser,
+    getFoodsByProvinceId,
+    updateFoodEatNum,
+    submitFoodData,
+    buildSign,
+    createParams
 }

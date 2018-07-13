@@ -50,8 +50,17 @@ Page({
         wx.showLoading({
             title: '正在加载中...',
         })
-        common.getFoodsByProvinceId('/food/find/' + provinceId + '/' + page).then(res => {
-            console.log(res)
+        var timestamp = new Date().getTime()
+        var sign = common.buildSign(timestamp)
+        // var data = {
+        //     openId: app.globalData.openId,
+        //     token: app.globalData.token, 
+        //     timestamp: timestamp,
+        //     sign: sign
+        // }
+        var data = common.createParams()
+
+        common.getFoodsByProvinceId('/_API/foods/' + provinceId + '/' + page, data).then(res => {
             if (res && res.code == 'E0000') {
                 var foodList = res.data.foodList
                 if (foodList.length) {
@@ -69,7 +78,7 @@ Page({
     },
 
     onHideFoods: function () {
-        var self = this;
+        var self = this
         var animation = wx.createAnimation({
             duration: 100,
             timingFunction: 'linear'
@@ -159,15 +168,20 @@ Page({
     },
 
     onSubmit: function() {
+        var timestamp = new Date().getTime()
+        var sign = common.buildSign(timestamp)
         var tempAllFoods = wx.getStorageSync('tempAllFoods')
         var data = {
             openId: app.globalData.openId,
+            token: app.globalData.token,
+            timestamp: timestamp,
+            sign: sign,
             foodIds: tempAllFoods
         }
         wx.showLoading({
             title: '正在提交...',
         })
-        common.submitFoodData('/user/submit', data).then(res => {
+        common.submitFoodData('/_API/submit', data).then(res => {
             console.log(res)
             if(res && res.code == 'E0000') {
                 wx.navigateTo({

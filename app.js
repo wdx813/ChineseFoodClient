@@ -16,7 +16,7 @@ App({
             success: res => {
                 console.log(res.code)
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                common.checkLogin('/user/checkLogin', res.code).then(res => {
+                common.checkLogin('/_API/login', {jsCode: res.code}).then(res => {
                     console.log(res);
                     if(res.code == 'E0000') {
                         this.globalData.openId = res.data.openId,

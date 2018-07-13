@@ -16,20 +16,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        // console.log(options)
-        // var provinceNum = wx.getStorageSync('tempAllProvinces').length
-        // var foodNum = wx.getStorageSync('tempAllFoods').length
-        // var nickname = app.globalData.userInfo.nickName
-        // var avatar = app.globalData.userInfo.avatarUrl
-        // this.setData({
-        //     nickname: nickname,
-        //     avatar: avatar,
-        //     provinceNum: provinceNum,
-        //     foodNum: foodNum,
-        //     surpassPercent: options.surpassPercent
-        // })
-
-        
+        console.log(options)
+        var provinceNum = wx.getStorageSync('tempAllProvinces').length
+        var foodNum = wx.getStorageSync('tempAllFoods').length
+        var nickname = app.globalData.userInfo.nickName
+        var avatar = app.globalData.userInfo.avatarUrl
+        this.setData({
+            nickname: nickname,
+            avatar: avatar,
+            provinceNum: provinceNum,
+            foodNum: foodNum,
+            surpassPercent: options.surpassPercent
+        })
     },
 
     /**
