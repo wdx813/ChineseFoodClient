@@ -9,7 +9,7 @@
         </view>
     </scroll-view>
     <view class='foot'>
-        <button plain='true' class='submitBtn' disabled='{{isDisabled}}' bindtap='onSubmit'>提交</button>
+        <button class='submitBtn' disabled='{{isDisabled}}' bindtap='onSubmit'>提交</button>
     </view>
 
 </view>

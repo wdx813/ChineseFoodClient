@@ -1,18 +1,19 @@
 <!--pages/result/result.wxml-->
 <view class='contain'>
-    <canvas canvas-id='share' class='canvas'>
-        <view class='avatar'>
-            <image src='{{avatar}}'></image>
+    <view class='box-res'>
+        <image class='avatar' src='{{avatar}}'></image>
+        <view class='nickname'>{{nickname}}</view>
+        <view class='info'>品尝过{{provinceNum}}个省区的特色，享用过{{foodNum}}种小吃</view>
+        <view class='info'>超越了{{surpassPercent}}%的吃友</view>
+        <view class='ana'>
+            <view class='ana-title'>吃货语录</view>
+            <view class='ana-content'>{{ana}}</view>
         </view>
-        <view class='nickname'>
-            <text>{{nickname}}</text>
-        </view>
-        <view class='province-food'>
-            <text>品尝过{{provinceNum}}个省区的特色，享用过{{foodNum}}种小吃</text>
-        </view>
-        <view class='surpass'>
-            <text>超越了{{surpassPercent}}%的吃友。</text>
-        </view>
-        <button class='saveBtn' bindtap='saveImageToPhoto'>保存至相册</button>
+    </view>
+    <view class='btn'>
+     <button class='btn-circle' hover-class='btn-circle-hover'></button>
+     <button class='btn-friend' open-type='share' hover-class='btn-friend-hover'></button>
+    </view>
+    <canvas class='canvas' canvas-id='share'>
     </canvas>
 </view>

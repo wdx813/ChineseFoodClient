@@ -18,9 +18,13 @@ Page({
     },
 
     onLoad: function () {
+        wx.showLoading({
+            title: '玩命加载中...',
+        })
         this.setData({
             provinces: common.provinces
         })
+        wx.hideLoading()
     },
 
     onShowFoods: function (e) {
@@ -50,8 +54,8 @@ Page({
         wx.showLoading({
             title: '正在加载中...',
         })
-        var timestamp = new Date().getTime()
-        var sign = common.buildSign(timestamp)
+        // var timestamp = new Date().getTime()
+        // var sign = common.buildSign(timestamp)
         // var data = {
         //     openId: app.globalData.openId,
         //     token: app.globalData.token, 
@@ -61,6 +65,7 @@ Page({
         var data = common.createParams()
 
         common.getFoodsByProvinceId('/_API/foods/' + provinceId + '/' + page, data).then(res => {
+            console.log(res)
             if (res && res.code == 'E0000') {
                 var foodList = res.data.foodList
                 if (foodList.length) {
@@ -168,16 +173,18 @@ Page({
     },
 
     onSubmit: function() {
-        var timestamp = new Date().getTime()
-        var sign = common.buildSign(timestamp)
+        // var timestamp = new Date().getTime()
+        // var sign = common.buildSign(timestamp)
         var tempAllFoods = wx.getStorageSync('tempAllFoods')
-        var data = {
-            openId: app.globalData.openId,
-            token: app.globalData.token,
-            timestamp: timestamp,
-            sign: sign,
-            foodIds: tempAllFoods
-        }
+        // var data = {
+        //     openId: app.globalData.openId,
+        //     token: app.globalData.token,
+        //     timestamp: timestamp,
+        //     sign: sign,
+        //     foodIds: tempAllFoods
+        // }
+        var data = common.createParams()
+        data.foodIds = tempAllFoods
         wx.showLoading({
             title: '正在提交...',
         })
@@ -185,11 +192,15 @@ Page({
             console.log(res)
             if(res && res.code == 'E0000') {
                 wx.navigateTo({
-                    url: '/pages/result/result?surpassPercent=' + res.data.surpassPercent,
+                    url: '/pages/result/result?surpassPercent=' + res.data.surpassPercent + '&ana=' + res.data.ana,
                 })
                 wx.hideLoading()
             }
         })
+    },
+
+    onShow: function() {
+        
     }
 
 })
@@ -211,3 +222,4 @@ Array.prototype.remove = function (val) {
         }
     }
 };
+

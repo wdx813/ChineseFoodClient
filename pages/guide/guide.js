@@ -29,19 +29,37 @@ Page({
                 user.gender = e.detail.userInfo.gender
                 user.avatar = e.detail.userInfo.avatarUrl
                 app.globalData.userInfo = e.detail.userInfo
+                wx.showLoading({
+                    title: '请稍后...',
+                })
                 // 保存用户数据
                 common.saveUser('/_API/saveUser', user).then(res => {
                     console.log(res);
+                    wx.hideLoading()
                     if(res.code == 'E0000') {
                         wx.redirectTo({
                             url: '/pages/index/index',
                         })
+                    } else {
+                        wx.showToast({
+                            title: res.msg,
+                            icon: 'none',
+                            duration: 2000
+                        })
                     }
                 })
             } else {
+                console.log('开始...1')
                 if (app.globalData.openId && app.globalData.token) {
+                    console.log('开始...2')
+                    wx.showLoading({
+                        title: '请稍后...',
+                    })
                     wx.redirectTo({
                         url: '/pages/index/index',
+                        success: function() {
+                            wx.hideLoading()
+                        }
                     })
                 } else {
                     wx.showToast({

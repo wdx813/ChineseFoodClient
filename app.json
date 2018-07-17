@@ -1,17 +1,16 @@
 {
     "pages": [
+        "pages/result/result",
         "pages/guide/guide",
         "pages/test/test",
-        "pages/result/result",
-        
         
         "pages/index/index",
         "pages/logs/logs"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#efc9de",
+        "navigationBarBackgroundColor": "#fcb100",
         "navigationBarTitleText": "吃货101",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "white"
     }
 }

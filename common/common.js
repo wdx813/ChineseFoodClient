@@ -1,8 +1,8 @@
 const utils = require('../utils/util.js')
 
 // const baseUrl = "http://192.168.12.38:8080/ChineseFoodServer"
-// const baseUrl = "http://60.205.1.4:8881"
-const baseUrl = "http://127.0.0.1"
+const baseUrl = "https://test.api.dakaapp.com:444"
+// const baseUrl = "http://127.0.0.1"
 /**
  * 登录验证
  */
